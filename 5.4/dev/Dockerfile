@@ -5,6 +5,7 @@ RUN apt-get update \
     && docker-php-ext-install intl \
     && docker-php-ext-enable intl \
 
+    && apt-get install -y --no-install-recommends mysql-client \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-enable pdo_mysql \
 
@@ -12,3 +13,5 @@ RUN apt-get update \
     && docker-php-ext-enable xdebug \
 
     && apt-get autoremove -y && apt-get clean all
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
